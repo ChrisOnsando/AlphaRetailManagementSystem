@@ -1,14 +1,81 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-{% block title %}Login{% endblock %}
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
 
-{% block content %}
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
 
-<h2>Log In</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-</form>
+        form {
+            margin: 0;
+            padding: 0;
+        }
 
-{% endblock %}
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Log In</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_username">Username:</label>
+            <input type="text" name="username" id="id_username" required>
+
+            <label for="id_password">Password:</label>
+            <input type="password" name="password" id="id_password" required>
+
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+</body>
+</html>

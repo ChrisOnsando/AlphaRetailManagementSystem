@@ -3,14 +3,62 @@
 {% block title %}Delete Account{% endblock %}
 
 {% block content %}
+<div class="delete-account-container">
+    <p>Are you sure you want to delete your account?</p>
 
-<p>Are you sure you want to delete your account?</p>
+    <form action="" method="POST" class="delete-account-form">
+        {% csrf_token %}
+        <button type="submit" class="delete-button yes-button">Yes, delete</button>
+        <button type="submit" class="delete-button no-button">No, cancel</button>
+    </form>
+</div>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete." />
-    <input type="submit" value="No, delete." />
+<style>
+    .delete-account-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-</form>
+    p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
 
+    .delete-account-form {
+        text-align: center;
+    }
+
+    .delete-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .yes-button {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .yes-button:hover {
+        background-color: #45a049;
+    }
+
+    .no-button {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .no-button:hover {
+        background-color: #d32f2f;
+    }
+</style>
 {% endblock %}
+

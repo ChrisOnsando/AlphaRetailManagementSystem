@@ -1,12 +1,64 @@
 {% extends 'base.html' %}
 
 {% block title %}User Update{% endblock %}
+
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" />
-</form>
+<div class="user-update-container">
+    <h2 class="user-update-title">Update User</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table class="user-update-table">
+            {{ form.as_table }}
+        </table>
+        <input class="user-update-submit" type="submit" value="Submit" />
+    </form>
+</div>
+
+<style>
+    .user-update-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #4CAF50; /* Green background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-update-title {
+        color: white;
+        font-size: 24px;
+    }
+
+    .user-update-table {
+        width: 100%;
+    }
+
+    .user-update-table th,
+    .user-update-table td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    .user-update-table th {
+        background-color: #45a049; /* Green header background color */
+        color: white;
+    }
+
+    .user-update-submit {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #45a049; /* Green button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .user-update-submit:hover {
+        opacity: 0.8;
+    }
+</style>
 {% endblock %}
+

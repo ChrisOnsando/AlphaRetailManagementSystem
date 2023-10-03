@@ -1,14 +1,75 @@
-<!-- Product details form -->
+{% extends 'base.html' %}
 
-<h1>{{ product.name }}</h1>
-<p>Description: {{ product.description }}</p>
-<p>Price: ${{ product.price }}</p>
-{% if product.available %}
-    <form method="POST" action="{% url 'place_order' product.id %}">
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+<div class="product-details-container">
+    <h1 class="product-name">{{ product.name }}</h1>
+    <p class="product-description">Description: {{ product.description }}</p>
+    <p class="product-price">Price: ${{ product.price }}</p>
+    
+    {% if product.available %}
+    <form class="order-form" method="POST" action="{% url 'place_order' product.id %}">
         {% csrf_token %}
-        <input type="number" name="quantity" value="1" min="1">
-        <!-- <button type="submit">Place Order</button> -->
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" value="1" min="1">
+        <button type="submit" class="order-button">Place Order</button>
     </form>
-{% else %}
-    <span>Sold Out</span>
-{% endif %}
+    {% else %}
+    <p class="product-sold-out">Sold Out</p>
+    {% endif %}
+</div>
+
+<style>
+    .product-details-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-name {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .product-description,
+    .product-price {
+        margin: 10px 0;
+    }
+
+    .order-form {
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+    }
+
+    input[type="number"] {
+        width: 60px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    .order-button {
+        padding: 5px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .order-button:hover {
+        background-color: #0056b3;
+    }
+
+    .product-sold-out {
+        color: #ff0000; /* Red for sold-out message */
+    }
+</style>
+{% endblock %}

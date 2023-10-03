@@ -3,26 +3,109 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-    {% if user.is_cashier %}
-    <h2>Hello, {{ cashier.user }}</h2>
-    <p><strong>Name: </strong>{{ cashier.name }}</p>
-    <p><strong>City: </strong>{{ cashier.city }}</p>
-    <p><strong>Address: </strong>{{ cashier.address }}</p>
-    <p><strong>Teller_no: </strong>{{ cashier.teller_no }}</p>
-    <p><strong>Contact: </strong>{{ cashier.contact }}</p>
+<div class="profile-container">
+    <table class="profile-table">
+        {% if user.is_cashier %}
+        <tr>
+            <th colspan="2">Hello, {{ cashier.user }}</th>
+        </tr>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{ cashier.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>City:</strong></td>
+            <td>{{ cashier.city }}</td>
+        </tr>
+        <tr>
+            <td><strong>Address:</strong></td>
+            <td>{{ cashier.address }}</td>
+        </tr>
+        <tr>
+            <td><strong>Teller No:</strong></td>
+            <td>{{ cashier.teller_no }}</td>
+        </tr>
+        <tr>
+            <td><strong>Contact:</strong></td>
+            <td>{{ cashier.contact }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a class="profile-button" href="{% url 'cashier-update' user.id %}">Update Profile</a>
+                <a class="profile-button" href="{% url 'cashier-delete' user.id %}">Delete Account</a>
+            </td>
+        </tr>
+        {% elif user.is_customer %}
+        <tr>
+            <th colspan="2">Hello, {{ customer.user }}</th>
+        </tr>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{ customer.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>City:</strong></td>
+            <td>{{ customer.city }}</td>
+        </tr>
+        <tr>
+            <td><strong>Address:</strong></td>
+            <td>{{ customer.address }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a class="profile-button" href="{% url 'customer-update' user.id %}">Update Profile</a>
+                <a class="profile-button" href="{% url 'customer-delete' user.id %}">Delete Account</a>
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
 
-    <h4><a href="{% url 'cashier-update' user.id %}">Update Profile</a></h4>
-    <h4><a href="{% url 'cashier-delete' user.id %}">Delete Account</a></h4>
+<style>
+    .profile-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #4CAF50; /* Green background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-    {% elif user.is_customer %}
-    <h2>Hello, {{ customer.user }}</h2>
-    <p><strong>Name: </strong>{{ customer.name }}</p>
-    <p><strong>City: </strong>{{ customer.city }}</p>
-    <p><strong>Address: </strong>{{ customer.address }}</p>
+    .profile-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-    <h4><a href="{% url 'customer-update' user.id %}">Update Profile</a></h4>
-    <h4><a href="{% url 'customer-delete' user.id %}">Delete Account</a></h4>
+    .profile-table th,
+    .profile-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
 
+    .profile-table th {
+        background-color: #45a049; /* Darker green header color */
+        color: white;
+    }
 
-    {% endif %}
+    .profile-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px 5px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #45a049; /* Green button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .profile-button:hover {
+        background-color: #4CAF50; /* Darker green hover color */
+    }
+</style>
 {% endblock %}
+

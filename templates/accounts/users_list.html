@@ -3,35 +3,85 @@
 {% block title %}Users{% endblock %}
 
 {% block content %}
-<h2>All Users</h2>
-{% if user_list %}
-<table border="1" cellspacing="10">
-    <thead>
-        <tr>
-            <th>User Type</th>
-            <th>Username</th>
-            <th>EmailAddress</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in user_list %}
+<div class="users-container">
+    <h2 class="users-title">All Users</h2>
+    {% if user_list %}
+    <table class="users-table">
+        <thead>
+            <tr>
+                <th>User Type</th>
+                <th>Username</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_list %}
             <tr>
                 <td>
                     {% if user.is_cashier %}
-                        Cashier
+                    Cashier
                     {% elif user.is_customer %}
-                        Customer
+                    Customer
                     {% else %}
-                        Staff
+                    Staff
                     {% endif %}
                 </td>
                 <td><a href="{{ user.get_absolute_url }}">{{ user.username }}</a></td>
                 <td><a href="{{ user.get_absolute_url }}">{{ user.email }}</a></td>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>No users available.</p>
-{% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No users available.</p>
+    {% endif %}
+</div>
+
+<style>
+    .users-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #4CAF50; /* Green background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .users-title {
+        color: white;
+        font-size: 24px;
+    }
+
+    .users-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    .users-table th,
+    .users-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .users-table th {
+        background-color: #45a049; /* Green header background color */
+        color: white;
+    }
+
+    .users-table a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .users-table a:hover {
+        text-decoration: underline;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+</style>
 {% endblock %}

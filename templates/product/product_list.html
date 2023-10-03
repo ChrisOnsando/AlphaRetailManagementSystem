@@ -1,27 +1,104 @@
-<!-- Product Listing -->
-<a href="{% url 'index' %}">Go To Home</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-<h1>Product List</h1>
-{% if products %}
-<table border="1" cellspacing="10">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product in products %}
-            <tr>
-                <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
-                <td>{{ product.description }}</td>
-                <td>{% if product.available %}Available{% else %}Sold Out{% endif %}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% else %}
-<p>No products available.</p>
-{% endif %}
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .sold-out {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'index' %}">Go To Home</a>
+        <h1>Product List</h1>
+        {% if products %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
+                        <td>{{ product.description }}</td>
+                        <td>{% if product.available %}Available{% else %}<span class="sold-out">Sold Out</span>{% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No products available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
 
