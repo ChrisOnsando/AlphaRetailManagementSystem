@@ -1,12 +1,53 @@
-<!-- Order Details -->
 {% extends 'base.html' %}
 
 {% block title %}Order {{ order.id }}{% endblock %}
 
 {% block content %}
-    <h1>Order {{ order.id }}</h1>
-    <p>Order Date: {{ order.order_date }}</p>
-    <p>Product: {{ order.product.name }}</p>
-    <p>Quantity: {{ order.quantity }}</p>
-    <a href="{% url 'order_list' %}">Back to Orders</a>
+<div class="order-details-container">
+    <h1 class="order-details-title">Order {{ order.id }}</h1>
+    <p><strong>Order Date:</strong> {{ order.order_date }}</p>
+    <p><strong>Product:</strong> {{ order.product.name }}</p>
+    <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+    <a class="back-to-orders-link" href="{% url 'order_list' %}">Back to Orders</a>
+</div>
+
+<style>
+    .order-details-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #4CAF50; /* Green background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-details-title {
+        color: white;
+        font-size: 24px;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    .back-to-orders-link {
+        display: block;
+        text-align: center;
+        background-color: #007bff; /* Blue background color */
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .back-to-orders-link:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+</style>
 {% endblock %}

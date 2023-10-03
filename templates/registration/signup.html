@@ -1,10 +1,64 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-{% block title %}Sign Up{% endblock %}
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            text-align: center;
+        }
 
-{% block content %}
-<h2>Sign up for a free account</h2>
-<p>Select below the type of account you want to Create</p>
-<a href="{% url 'cashier-signup' %}">I'm a Cashier</a><br>
-<a href="{% url 'customer-signup' %}">I'm a Customer</a>
-{% endblock %}
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        a {
+            display: block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign up for a free account</h2>
+        <p>Select below the type of account you want to create</p>
+        <a href="{% url 'cashier-signup' %}">I'm a Cashier</a>
+        <a href="{% url 'customer-signup' %}">I'm a Customer</a>
+    </div>
+</body>
+</html>

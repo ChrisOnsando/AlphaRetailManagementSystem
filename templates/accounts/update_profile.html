@@ -3,11 +3,61 @@
 {% block title %}Update Profile{% endblock %}
 
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" />
-</form>
+<div class="update-profile-container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table class="update-profile-table">
+            {{ form.as_table }}
+        </table>
+        <input class="update-profile-button" type="submit" value="Submit" />
+    </form>
+</div>
+
+<style>
+    .update-profile-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #4CAF50; /* Green background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .update-profile-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .update-profile-table th,
+    .update-profile-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .update-profile-table th {
+        background-color: #45a049; /* Darker green header color */
+        color: white;
+    }
+
+    .update-profile-button {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #45a049; /* Green button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .update-profile-button:hover {
+        background-color: #4CAF50; /* Darker green hover color */
+    }
+</style>
 {% endblock %}

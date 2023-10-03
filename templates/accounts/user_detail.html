@@ -3,11 +3,65 @@
 {% block title %}User Detail{% endblock %}
 
 {% block content %}
-<h3>User: {{user.username}}</h3>
-<p><strong>Email: </strong>{{user.email}}</p>
-<p><strong>Role: </strong>
-    {% if user.is_cashier %}Cashier{% elif user.is_customer %}Customer{% else %}Staff{% endif %}
-</p>
-<h4><a href="{% url 'user-update' user.id %}">Update User</a></h4>
-<h4><a href="{% url 'user-delete' user.id %}">Delete User</a></h4>
+<div class="user-detail-container">
+    <h3 class="user-detail-title">User: {{ user.username }}</h3>
+    <p class="user-detail-info"><strong>Email: </strong>{{ user.email }}</p>
+    <p class="user-detail-info"><strong>Role: </strong>
+        {% if user.is_cashier %}Cashier{% elif user.is_customer %}Customer{% else %}Staff{% endif %}
+    </p>
+    <div class="user-detail-buttons">
+        <a class="user-detail-button user-update" href="{% url 'user-update' user.id %}">Update User</a>
+        <a class="user-detail-button user-delete" href="{% url 'user-delete' user.id %}">Delete User</a>
+    </div>
+</div>
+
+<style>
+    .user-detail-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #4CAF50; /* Green background color */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-detail-title {
+        color: white;
+        font-size: 24px;
+    }
+
+    .user-detail-info {
+        color: white;
+        margin-top: 10px;
+    }
+
+    .user-detail-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .user-detail-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .user-update {
+        background-color: #45a049; /* Green button color for "Update User" */
+    }
+
+    .user-delete {
+        background-color: #f44336; /* Red button color for "Delete User" */
+    }
+
+    .user-detail-button:hover {
+        opacity: 0.8;
+    }
+</style>
 {% endblock %}
