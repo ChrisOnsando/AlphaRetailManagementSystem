@@ -1,0 +1,15 @@
+<!-- Product details form -->
+<a href="{% url 'index' %}">Go To Home</a>
+
+<h1>{{ product.name }}</h1>
+<p>Description: {{ product.description }}</p>
+<p>Price: ${{ product.price }}</p>
+{% if product.available %}
+    <form method="POST" action="{% url 'place_order' product.id %}">
+        {% csrf_token %}
+        <input type="number" name="quantity" value="1" min="1">
+        <button type="submit">Place Order</button>
+    </form>
+{% else %}
+    <span>Sold Out</span>
+{% endif %}

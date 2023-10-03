@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Apps
     'accounts',
+    'shop',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'alpharetailmanagementsystem.urls'
+
 
 TEMPLATES = [
     {
