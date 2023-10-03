@@ -4,24 +4,34 @@
 
 {% block content %}
 <h2>All Users</h2>
-<ul>
-    {% for user in user_list %}
-        {% if user.is_cashier %}
-        Cashiers
-        <li>
-            <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>
-        </li><br>
-        {% elif user.is_customer %}
-        Customers
-        <li>
-            <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>
-        </li><br>
-        {% else %}
-        Staffs
-        <li>
-            <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>
-        </li><br>
-        {% endif %}
-    {% endfor %}
-</ul>
+{% if user_list %}
+<table border="1" cellspacing="10">
+    <thead>
+        <tr>
+            <th>User Type</th>
+            <th>Username</th>
+            <th>EmailAddress</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in user_list %}
+            <tr>
+                <td>
+                    {% if user.is_cashier %}
+                        Cashier
+                    {% elif user.is_customer %}
+                        Customer
+                    {% else %}
+                        Staff
+                    {% endif %}
+                </td>
+                <td><a href="{{ user.get_absolute_url }}">{{ user.username }}</a></td>
+                <td><a href="{{ user.get_absolute_url }}">{{ user.email }}</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No users available.</p>
+{% endif %}
 {% endblock %}
